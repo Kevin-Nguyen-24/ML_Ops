@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diabetes Prediction</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #f1f8e9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2e7d32;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #388e3c;
+    }
+
+    #result {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 18px;
+      color: #1b5e20;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Diabetes Prediction</h2>
+    <form id="predictForm">
+      <label for="pregnancies">Pregnancies</label>
+      <input id="pregnancies" name="pregnancies" type="number" min="0" max="20" placeholder="from 0 to 20" required>
+    
+      <label for="glucose">Glucose Level</label>
+      <input id="glucose" name="glucose" type="number" min="50" max="300" placeholder="from 50 to 300" required>
+    
+      <label for="bloodpressure">Blood Pressure</label>
+      <input id="bloodpressure" name="bloodpressure" type="number" min="30" max="200" placeholder="from 30 to 200" required>
+    
+      <label for="skinthickness">Skin Thickness (mm)</label>
+      <input id="skinthickness" name="skinthickness" type="number" min="0" max="100" placeholder="from 0 to 100" required>
+    
+      <label for="insulin">Insulin Level</label>
+      <input id="insulin" name="insulin" type="number" min="0" max="900" placeholder="from 0 to 900" required>
+    
+      <label for="bmi">BMI</label>
+      <input id="bmi" name="bmi" type="number" step="0.1" min="10" max="70" placeholder="from 10.0 to 70.0" required>
+    
+      <label for="diabetespedigreefunction">Diabetes Pedigree Function</label>
+      <input id="diabetespedigreefunction" name="diabetespedigreefunction" type="number" step="0.01" min="0.1" max="2.5" placeholder="from 0.1 to 2.5" required>
+    
+      <label for="age">Age</label>
+      <input id="age" name="age" type="number" min="10" max="100" placeholder="from 10 to 100" required>
+    
+      <div class="button-row">
+        <button type="submit">Predict</button>
+        <button type="button" id="restart">Restart</button>
+      </div>
+    </form>
+    
+    <h3 id="result"></h3>
+  </div>
+
+  <script>
+    document.getElementById("predictForm").onsubmit = async function (e) {
+      e.preventDefault();
+  
+      const formData = new FormData(this);
+      const response = await fetch("/predict", {
+        method: "POST",
+        body: formData
+      });
+  
+      const result = await response.json();
+      document.getElementById("result").innerText = result.message;
+    };
+  
+    // Restart button clears the result and form
+    document.getElementById("restart").onclick = function () {
+      document.getElementById("predictForm").reset();
+      document.getElementById("result").innerText = "";
+    };
+  </script>
+  
+</body>
+</html>
