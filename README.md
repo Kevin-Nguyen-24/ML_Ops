@@ -26,13 +26,13 @@ A clean and interactive web application that predicts whether a user is likely t
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/diabetes-app.git
-cd diabetes-app
+[git clone https://github.com/Kevin-Nguyen-24/ML_Ops.git]
+cd ML_Ops
 2. Build the Docker image
 bash
 Copy
 Edit
-docker build -t diabetes-app .
+docker build -t ML_Ops.
 3. Start the container
 bash
 Copy
@@ -72,4 +72,4 @@ https://diabetes-671958340399.us-central1.run.app/
 👨‍💻 Author
 Duc Phu Nguyen
 📧 dpnguyen4@myseneca.ca
-🔗 LinkedIn
+🔗 LinkedIn https://www.linkedin.com/in/duc-phu-nguyen-052289264/
