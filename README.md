@@ -29,14 +29,8 @@ A clean and interactive web application that predicts whether a user is likely t
 [git clone https://github.com/Kevin-Nguyen-24/ML_Ops.git]
 cd ML_Ops
 2. Build the Docker image
-bash
-Copy
-Edit
 docker build -t ML_Ops.
 3. Start the container
-bash
-Copy
-Edit
 docker run -p 5000:5000 diabetes-app
 4. Open your browser
 Go to: http://localhost:5000
